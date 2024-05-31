@@ -63,8 +63,8 @@ async function run() {
     //   res.send(data);
     // })
     app.get('/allstate',async(req,res)=>{
-      const arraydata = Cart.find();
-        const data = await Allstate.toArray();      
+      const arraydata = Allstate.find();
+        const data = await arraydata.toArray();      
         res.send(data);
     })
     
