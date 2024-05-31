@@ -41,25 +41,31 @@ async function run() {
     // })
    
 
-    const Category = client.db('Amazon').collection('Category');
-    const Cart = client.db('Amazon').collection('CartData');
+    const Allstate = client.db('Alldata').collection('Advertisement');
+
+    
    
 
   
-    app.get("/Category",async(req,res)=>{
-      const arraydata = Category.find();
-      const data = await arraydata.toArray();      
-      res.send(data);
-    })
-    app.post('/addcard',(req,res)=>{
-            const data=req.body
-            console.log(data)
-            Cart.insertOne(data) 
-    })
-    app.get('/usercart',async(req,res)=>{
+    // app.get("/Category",async(req,res)=>{
+    //   const arraydata = Category.find();
+    //   const data = await arraydata.toArray();      
+    //   res.send(data);
+    // })
+    // app.post('/addcard',(req,res)=>{
+    //         const data=req.body
+    //         console.log(data)
+    //         Cart.insertOne(data) 
+    // })
+    // app.get('/usercart',async(req,res)=>{
+    //   const arraydata = Cart.find();
+    //   const data = await arraydata.toArray();      
+    //   res.send(data);
+    // })
+    app.get('/allstate',async(req,res)=>{
       const arraydata = Cart.find();
-      const data = await arraydata.toArray();      
-      res.send(data);
+        const data = await Allstate.toArray();      
+        res.send(data);
     })
     
     // Send a ping to confirm a successful connection
