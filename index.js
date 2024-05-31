@@ -41,7 +41,8 @@ async function run() {
     // })
    
 
-    const Allstate = client.db('Alldata').collection('Advertisement');
+    const Allstate = client.db('Alldata').collection('Advaticement');
+    
 
     
    
