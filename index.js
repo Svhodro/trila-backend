@@ -75,9 +75,19 @@ async function run() {
         res.send(data);
     })
     app.post('/adduser',(req,res)=>{
-              const data=req.body
-              console.log(data)
-              Cart.insertOne(data) 
+              const {email,photourl,username,roll}=req.body
+              const fulldata={
+                useremail:email,
+                userphoto:photourl,
+                username:username,
+                userroll:roll
+              }
+              Alluser.insertOne(fulldata) 
+      })
+      app.get('/user',async(req,res)=>{
+        const arraydata = Alluser.find()
+          const data = await arraydata.toArray();      
+          res.send(data);
       })
     
     // Send a ping to confirm a successful connection
