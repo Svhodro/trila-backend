@@ -42,7 +42,8 @@ async function run() {
    
 
     const Allstate = client.db('Alldata').collection('Advaticement');
-    
+    const Alluser = client.db('Alldata').collection('users');
+  
 
     
    
@@ -73,6 +74,11 @@ async function run() {
         const data = await arraydata.toArray();      
         res.send(data);
     })
+    app.post('/adduser',(req,res)=>{
+              const data=req.body
+              console.log(data)
+              Cart.insertOne(data) 
+      })
     
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
