@@ -63,8 +63,13 @@ async function run() {
     //   const data = await arraydata.toArray();      
     //   res.send(data);
     // })
-    app.get('/allstate',async(req,res)=>{
+    app.get('/somestate',async(req,res)=>{
       const arraydata = Allstate.find().limit(4);
+        const data = await arraydata.toArray();      
+        res.send(data);
+    })
+    app.get('/allstate',async(req,res)=>{
+      const arraydata = Allstate.find();
         const data = await arraydata.toArray();      
         res.send(data);
     })
