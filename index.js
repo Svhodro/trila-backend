@@ -43,7 +43,9 @@ async function run() {
 
     const Allstate = client.db('Alldata').collection('Advaticement');
     const Alluser = client.db('Alldata').collection('users');
-  
+    const wishlist = client.db('Alldata').collection('Wishlist');
+   
+
 
     
    
@@ -84,6 +86,16 @@ async function run() {
               }
               Alluser.insertOne(fulldata) 
       })
+      app.post('/addwish',(req,res)=>{
+        const {email,photourl,username,roll}=req.body
+        const fulldata={
+          useremail:email,
+          userphoto:photourl,
+          username:username,
+          userroll:roll
+        }
+        // wishlist.insertOne(fulldata) 
+})
       app.get('/user',async(req,res)=>{
         const arraydata = Alluser.find()
           const data = await arraydata.toArray();      
