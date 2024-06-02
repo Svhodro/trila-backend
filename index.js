@@ -87,14 +87,9 @@ async function run() {
               Alluser.insertOne(fulldata) 
       })
       app.post('/addwish',(req,res)=>{
-        const {email,photourl,username,roll}=req.body
-        const fulldata={
-          useremail:email,
-          userphoto:photourl,
-          username:username,
-          userroll:roll
-        }
-        // wishlist.insertOne(fulldata) 
+        const data=req.body
+        
+        wishlist.insertOne(data) 
 })
       app.get('/user',async(req,res)=>{
         const arraydata = Alluser.find()
