@@ -42,6 +42,7 @@ async function run() {
     const Allstate = client.db("Alldata").collection("Advaticement");
     const Alluser = client.db("Alldata").collection("users");
     const wishlist = client.db("Alldata").collection("Wishlist");
+    const reviewlist = client.db("Alldata").collection("reviews");
 
     // app.get("/Category",async(req,res)=>{
     //   const arraydata = Category.find();
@@ -68,6 +69,11 @@ async function run() {
       const data = await arraydata.toArray();
       res.send(data);
     });
+    app.get("/allwish", async (req, res) => {
+      const arraydata = wishlist.find();
+      const data = await arraydata.toArray();
+      res.send(data);
+    });
     app.post("/adduser", (req, res) => {
       const { email, photourl, username, roll } = req.body;
       const fulldata = {
@@ -83,11 +89,11 @@ async function run() {
 
       wishlist.insertOne(data);
     });
-    app.get("/allwish", async (req, res) => {
-      const arraydata = wishlist.find();
-      const data = await arraydata.toArray();
-      res.send(data);
+    app.post("/addreview", (req, res) => {
+      const data = req.body;
+      reviewlist.insertOne(data);
     });
+   
     app.get("/user", async (req, res) => {
       const arraydata = Alluser.find();
       const data = await arraydata.toArray();
