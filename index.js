@@ -74,6 +74,11 @@ async function run() {
       const data = await arraydata.toArray();
       res.send(data);
     });
+    app.get("/allreview", async (req, res) => {
+      const arraydata = reviewlist.find();
+      const data = await arraydata.toArray();
+      res.send(data);
+    });
     app.post("/adduser", (req, res) => {
       const { email, photourl, username, roll } = req.body;
       const fulldata = {
