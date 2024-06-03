@@ -91,7 +91,8 @@ async function run() {
     });
     app.post("/addreview", (req, res) => {
       const data = req.body;
-      reviewlist.insertOne(data);
+      const review=reviewlist.insertOne(data);
+      res.send(review) 
     });
    
     app.get("/user", async (req, res) => {
