@@ -74,8 +74,13 @@ async function run() {
       const data = await arraydata.toArray();
       res.send(data);
     });
-    app.get("/allreview", async (req, res) => {
+    app.get("/latestreview", async (req, res) => {
       const arraydata = reviewlist.find().limit(3);
+      const data = await arraydata.toArray();
+      res.send(data);
+    });
+    app.get("/allreview", async (req, res) => {
+      const arraydata = reviewlist.find();
       const data = await arraydata.toArray();
       res.send(data);
     });
