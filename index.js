@@ -39,7 +39,7 @@ async function run() {
 
     // })
 
-    const Allstate = client.db("Alldata").collection("Advaticement");
+    const Allstate = client.db("Alldata").collection("Allproperty");
     const Alluser = client.db("Alldata").collection("users");
     const wishlist = client.db("Alldata").collection("Wishlist");
     const reviewlist = client.db("Alldata").collection("reviews");
