@@ -43,6 +43,9 @@ async function run() {
     const Alluser = client.db("Alldata").collection("users");
     const wishlist = client.db("Alldata").collection("Wishlist");
     const reviewlist = client.db("Alldata").collection("reviews");
+    const Offer = client.db("Alldata").collection("Offer");
+  
+
 
     // app.get("/Category",async(req,res)=>{
     //   const arraydata = Category.find();
@@ -84,6 +87,11 @@ async function run() {
       const data = await arraydata.toArray();
       res.send(data);
     });
+    app.get("/Alloffer", async (req, res) => {
+      const arraydata = Offer.find();
+      const data = await arraydata.toArray();
+      res.send(data);
+    });
     app.post("/adduser", (req, res) => {
       const { email, photourl, username, roll } = req.body;
       const fulldata = {
@@ -104,7 +112,11 @@ async function run() {
       const review=reviewlist.insertOne(data);
       res.send(review) 
     });
-   
+    app.post("/addoffer", (req, res) => {
+      const data = req.body;
+      const dataa= Offer.insertOne(data);
+      res.send(dataa)
+    });
     app.get("/user", async (req, res) => {
       const arraydata = Alluser.find();
       const data = await arraydata.toArray();
