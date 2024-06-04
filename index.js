@@ -10,7 +10,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://trila.netlify.app",
+      "https://trilarealstate.netlify.app",
       // "https://cardoctor-bd.firebaseapp.com",
     ],
   })
