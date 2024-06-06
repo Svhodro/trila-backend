@@ -124,6 +124,11 @@ async function run() {
       // // const dataa= Offer.insertOne(data);
       res.send("delete sucsessfull")
     });
+    app.delete("/deletewish/:id", (req, res) => {
+      const id = req.params.id;
+      wishlist.findOneAndDelete({_id:new ObjectId(id)})       
+      res.send("delete sucsessfull")
+    });
     app.get("/user", async (req, res) => {
       const arraydata = Alluser.find();
       const data = await arraydata.toArray();
