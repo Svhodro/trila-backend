@@ -120,6 +120,7 @@ async function run() {
     app.post("/addproperty", (req, res) => {
       const data = req.body;
       Allstate.insertOne(data);
+      res.send('sucsess')
     });
     app.delete("/deletereview/:id", (req, res) => {
       const id = req.params.id;
