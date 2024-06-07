@@ -44,8 +44,6 @@ async function run() {
     const wishlist = client.db("Alldata").collection("Wishlist");
     const reviewlist = client.db("Alldata").collection("reviews");
     const Offer = client.db("Alldata").collection("Offer");
-  
-
 
     // app.get("/Category",async(req,res)=>{
     //   const arraydata = Category.find();
@@ -109,35 +107,44 @@ async function run() {
     });
     app.post("/addreview", (req, res) => {
       const data = req.body;
-      const review=reviewlist.insertOne(data);
-      res.send(review) 
+      const review = reviewlist.insertOne(data);
+      res.send(review);
     });
     app.post("/addoffer", (req, res) => {
       const data = req.body;
-      const dataa= Offer.insertOne(data);
-      res.send(dataa)
+      const dataa = Offer.insertOne(data);
+      res.send(dataa);
     });
     app.post("/addproperty", (req, res) => {
       const data = req.body;
       Allstate.insertOne(data);
-      res.send('sucsess')
+      res.send("sucsess");
     });
     app.delete("/deletereview/:id", (req, res) => {
       const id = req.params.id;
-      reviewlist.findOneAndDelete({_id:new ObjectId(id)}) 
+      reviewlist.findOneAndDelete({ _id: new ObjectId(id) });
       // console.log(id);
       // // const dataa= Offer.insertOne(data);
-      res.send("delete sucsessfull")
+      res.send("delete sucsessfull");
     });
     app.delete("/deletewish/:id", (req, res) => {
       const id = req.params.id;
-      wishlist.findOneAndDelete({_id:new ObjectId(id)})       
-      res.send("delete sucsessfull")
+      wishlist.findOneAndDelete({ _id: new ObjectId(id) });
+      res.send("delete sucsessfull");
     });
     app.delete("/deletestate/:id", (req, res) => {
       const id = req.params.id;
-      Allstate.findOneAndDelete({_id:new ObjectId(id)})       
-      res.send("delete sucsessfull")
+      Allstate.findOneAndDelete({ _id: new ObjectId(id) });
+      res.send("delete sucsessfull");
+    });
+    app.put("/updatestate/:id", (req, res) => {
+      const id = req.params.id;
+      const data = req.body; 
+      const newvalues = {
+        $set: { Pricerange: data.price, Propertyimage: data.image,Propertylocation:data.proplocation,Propertytitle:data.poptitle  },
+      };
+      Allstate.updateOne({ _id: new ObjectId(id) }, newvalues);
+      res.send("update sucsessfull");
     });
     app.get("/user", async (req, res) => {
       const arraydata = Alluser.find();
