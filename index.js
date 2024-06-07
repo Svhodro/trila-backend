@@ -117,6 +117,10 @@ async function run() {
       const dataa= Offer.insertOne(data);
       res.send(dataa)
     });
+    app.post("/addproperty", (req, res) => {
+      const data = req.body;
+      Allstate.insertOne(data);
+    });
     app.delete("/deletereview/:id", (req, res) => {
       const id = req.params.id;
       reviewlist.findOneAndDelete({_id:new ObjectId(id)}) 
