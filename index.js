@@ -4,7 +4,9 @@ const port = process.env.PORT || 5000;
 const cors = require("cors");
 require("dotenv").config();
 
+const stripe = require("stripe")('sk_test_51PPEcLKztv8p0nMgtkDr5XXn82kguSKrnpP41ge4cnyijJgKhQt3hUCwdEigazeWumN2sNr3ce0qA7N2MCOn5HHK00888tOAri');
 // middleware
+// secret Key
 
 app.use(
   cors({
@@ -146,6 +148,31 @@ async function run() {
       Allstate.updateOne({ _id: new ObjectId(id) }, newvalues);
       res.send("update sucsessfull");
     });
+    app.put("/updateoffer/:id", (req, res) => {
+      const id = req.params.id;
+      const data = req.body; 
+      const newvalues = {
+        $set: { status:data.status  },
+      };
+      Offer.updateOne({ _id: new ObjectId(id) }, newvalues);
+      res.send("update sucsessfull");
+   
+    });
+    
+// payment intent
+app.post('/create-payment-intent', async (req, res) => {
+  const { price} = req.body;
+  const amount = parseInt(price * 100);
+ const paymentIntent = await stripe.paymentIntents.create({
+  amount: amount,
+  currency: 'usd',
+  payment_method_types: ['card']
+  });
+  res.send({
+    clientSecret: paymentIntent.client_secret
+  })
+  
+  })
     app.get("/user", async (req, res) => {
       const arraydata = Alluser.find();
       const data = await arraydata.toArray();
