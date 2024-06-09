@@ -139,6 +139,11 @@ async function run() {
       Allstate.findOneAndDelete({ _id: new ObjectId(id) });
       res.send("delete sucsessfull");
     });
+    app.delete("/deleteuser/:id", (req, res) => {
+      const id = req.params.id;
+      Alluser.findOneAndDelete({ _id: new ObjectId(id) });
+      res.send("delete sucsessfull");
+    });
     app.put("/updatestate/:id", (req, res) => {
       const id = req.params.id;
       const data = req.body; 
