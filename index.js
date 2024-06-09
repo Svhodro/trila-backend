@@ -160,6 +160,17 @@ async function run() {
    
     });
     
+    app.put("/updatestate/:id", (req, res) => {
+      const id = req.params.id;
+      const data = req.body; 
+     
+      const newvalues = {
+        $set: { status:data.status  },
+      };
+      Allstate.updateOne({ _id: new ObjectId(id) }, newvalues);
+      res.send("update sucsessfull");
+   
+    });
 // payment intent
 app.post('/create-payment-intent', async (req, res) => {
   const { price} = req.body;
