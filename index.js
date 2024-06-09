@@ -160,7 +160,7 @@ async function run() {
    
     });
     
-    app.put("/updatestate/:id", (req, res) => {
+    app.put("/updatestatus/:id", (req, res) => {
       const id = req.params.id;
       const data = req.body; 
      
