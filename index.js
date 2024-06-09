@@ -171,6 +171,17 @@ async function run() {
       res.send("update sucsessfull");
    
     });
+    app.put("/updateuser/:id", (req, res) => {
+      const id = req.params.id;
+      const data = req.body; 
+     
+      const newvalues = {
+        $set: { userroll:data.roll  },
+      };
+      Alluser.updateOne({ _id: new ObjectId(id) }, newvalues);
+      res.send("update sucsessfull");
+   
+    });
 // payment intent
 app.post('/create-payment-intent', async (req, res) => {
   const { price} = req.body;
