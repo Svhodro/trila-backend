@@ -12,7 +12,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://trilarealstate.netlify.app",
+      "https://b9a12realstate.netlify.app",
       "https://trila-real-estate.vercel.app",
     ],
   })
@@ -151,6 +151,7 @@ async function run() {
     app.put("/updateoffer/:id", (req, res) => {
       const id = req.params.id;
       const data = req.body; 
+     
       const newvalues = {
         $set: { status:data.status  },
       };
