@@ -46,6 +46,9 @@ async function run() {
     const wishlist = client.db("Alldata").collection("Wishlist");
     const reviewlist = client.db("Alldata").collection("reviews");
     const Offer = client.db("Alldata").collection("Offer");
+    const Advatice = client.db("Alldata").collection("Advaticement");
+   
+
 
     // app.get("/Category",async(req,res)=>{
     //   const arraydata = Category.find();
@@ -64,6 +67,11 @@ async function run() {
     // })
     app.get("/somestate", async (req, res) => {
       const arraydata = Allstate.find().limit(4);
+      const data = await arraydata.toArray();
+      res.send(data);
+    });
+    app.get("/Advatice", async (req, res) => {
+      const arraydata = Advatice.find();
       const data = await arraydata.toArray();
       res.send(data);
     });
@@ -91,6 +99,13 @@ async function run() {
       const arraydata = Offer.find();
       const data = await arraydata.toArray();
       res.send(data);
+    });
+    //post
+    app.post("/addAdvice", (req, res) => {
+      const data = req.body;
+      const dataa = Advatice.insertOne(data);
+      res.send(dataa);
+      
     });
     app.post("/adduser", (req, res) => {
       const { email, photourl, username, roll } = req.body;
@@ -156,6 +171,7 @@ async function run() {
     app.put("/updateoffer/:id", (req, res) => {
       const id = req.params.id;
       const data = req.body; 
+      
      
       const newvalues = {
         $set: { status:data.status  },
