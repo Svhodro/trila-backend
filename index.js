@@ -116,11 +116,13 @@ async function run() {
         userroll: roll,
       };
       Alluser.insertOne(fulldata);
+      res.send("done");
     });
     app.post("/addwish", (req, res) => {
       const data = req.body;
 
       wishlist.insertOne(data);
+      res.send("done");
     });
     app.post("/addreview", (req, res) => {
       const data = req.body;
